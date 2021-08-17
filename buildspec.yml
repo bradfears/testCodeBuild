@@ -35,17 +35,6 @@ phases:
       - echo environment - $env
       - echo cfdistid - $cfdistid
 
-      # (1) Version control bundle
-      - echo "Getting Git Commit Sha for bundle version control"
-      - export bundleVersion=$(git rev-parse --short HEAD)
-      - cp dist/my-widget-$env.min.css dist/my-widget-$env-${bundleVersion}.min.css
-      - cp dist/my-widget-$env.min.js dist/my-widget-$env-${bundleVersion}.min.js
-
-      # (2) Clearing CloudFront Cache
-      - echo "Calling cloudfront create-invalidation"
-      - aws cloudfront create-invalidation --distribution-id $cfdistid --paths "/*"
-      - echo "Clear cache on cloudfront"
-      - echo "Job completed successfully! Wait for CloudFront Cache to be cleared for a few nimutes"
 artifacts:
   discard-paths: yes
   # base-directory: 'dist'
