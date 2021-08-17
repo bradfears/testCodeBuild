@@ -36,7 +36,5 @@ phases:
       - echo cfdistid - $cfdistid
 
 artifacts:
-  discard-paths: yes
-  # base-directory: 'dist'
   files:
-    - dist/*
+    - '**/*'
